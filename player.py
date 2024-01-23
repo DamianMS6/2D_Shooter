@@ -1,26 +1,25 @@
 import pygame as py
+import bullet
 
-class Player():
-    def __init__(self):
-        self.x_pos = 400
-        self.y_pos = 300
-
-
-    def display_player(self,screen):
-        self.player = py.Rect(self.x_pos,self.y_pos,15,15)
-        py.draw.rect(screen, 'aliceblue', self.player)
-
+class Player(py.sprite.Sprite):
+    def __init__(self,SCREEN_WIDTH,SCREEN_HEIGHT):
+        super().__init__()
+        self.image = py.Surface((20,20))
+        self.image.fill((255,255,255))
+        self.rect = self.image.get_rect(center = (SCREEN_WIDTH/2,SCREEN_HEIGHT/2))
     def movement(self):
         keys = py.key.get_pressed()
         if keys[py.K_w]:
-            self.y_pos -= 1.5
+            self.rect.y -= 2
         if keys[py.K_s]:
-            self.y_pos += 1.5
+            self.rect.y += 2
         if keys[py.K_a]:
-            self.x_pos -= 1.5
+            self.rect.x -= 2
         if keys[py.K_d]:
-            self.x_pos += 1.5
+            self.rect.x += 2
 
+    def create_bullet(self):
+        return bullet.Bullet(self.rect.x, self.rect.y)
 
 
 

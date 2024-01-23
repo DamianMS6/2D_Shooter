@@ -1,21 +1,12 @@
 import pygame as py
 import player as Player
 
-class Bullet(Player):
-    def __init__(self):
-        super().__init__(x_pos)
-        super().__init__(y_pos)
-
-    def draw_bullet(self,screen):
-        self.bullet = py.Rect(self.x_pos, self.y_pos)
-        py.draw.rect(screen, 'brown1', self.bullet)
+class Bullet(py.sprite.Sprite):
+    def __init__(self, pos_x, pos_y):
+        super().__init__()
+        self.image = py.Surface((10,10))
+        self.image.fill((255,255,255))
+        self.rect = self.image.get_rect(center = (pos_x,pos_y))
 
     def update(self):
-        keys = py.key.get_pressed()
-        if keys[py.K_UP]:
-            draw_bullet(screen)
-
-
-
-
-
+        self.rect.x += 5
