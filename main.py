@@ -16,19 +16,23 @@ player_group.add(player)
 
 bullet_group = py.sprite.Group()
 
+reset_time = py.time.get_ticks()
+
 
 while True:
     for event in py.event.get():
         if event.type == py.QUIT:
             py.quit()
-            exit()
-        keys = py.key.get_pressed()
-        if keys[py.K_RIGHT]:
-            print('pressed')
-            bullet_group.add(player.create_bullet())
+            sys.exit()
+        #current_time = py.time.get_ticks()
+        #if current_time - reset_time > 500:
+        #    keys = py.key.get_pressed()
+        #    if keys[py.K_RIGHT]:
+        #        print('pressed')
+        #        bullet_group.add(player.create_bullet())
+        #    reset_time = current_time
 
-
-    player.movement()
+    player.movement(reset_time,bullet_group)
     bullet_group.draw(screen)
     bullet_group.update()
     player_group.draw(screen) # Draws all player sprites in a group on the screen
