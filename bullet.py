@@ -11,3 +11,4 @@ class Bullet(py.sprite.Sprite):
     def update(self):
         self.rect.x += 5
 
+
